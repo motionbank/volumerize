@@ -66,13 +66,3 @@ workflows:
             branches:
               ignore:
                 - master
-  nightly:
-    triggers:
-      - schedule:
-          cron: "0 1 * * 1"
-          filters:
-            branches:
-              only:
-                - master
-    jobs:
-      - build_releases

@@ -1,8 +1,9 @@
 # Blacklabelops Volumerize
 
 [![Circle CI](https://circleci.com/gh/motionbank/volumerize.svg?style=shield)](https://circleci.com/gh/motionbank/volumerize)
-[![Open Issues](https://img.shields.io/github/issues/motionbank/volumerize.svg)](https://github.com/motionbank/volumerize/issues) [![Stars on GitHub](https://img.shields.io/github/stars/motionbank/volumerize.svg)](https://github.com/motionbank/volumerize/stargazers)
-[![Docker Stars](https://img.shields.io/docker/stars/motionbank/volumerize.svg)](https://hub.docker.com/r/motionbank/volumerize/) [![Docker Pulls](https://img.shields.io/docker/pulls/motionbank/volumerize.svg)](https://hub.docker.com/r/motionbank/volumerize/)
+[![Stars on GitHub](https://img.shields.io/github/stars/motionbank/volumerize.svg)](https://github.com/motionbank/volumerize/stargazers)
+[![Docker Stars](https://img.shields.io/docker/stars/motionbank/volumerize.svg)](https://hub.docker.com/r/motionbank/volumerize/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/motionbank/volumerize.svg)](https://hub.docker.com/r/motionbank/volumerize/)
 
 [![Try in PWD](https://raw.githubusercontent.com/play-with-docker/stacks/master/assets/images/button.png)](https://labs.play-with-docker.com/?stack=https://raw.githubusercontent.com/motionbank/volumerize/master/dc-pwd.yml)
 
@@ -28,6 +29,22 @@ Supported backends:
 * rsync
 
 and many more: [Duplicity Supported Backends](http://duplicity.nongnu.org/index.html)
+
+# Unoffical version
+
+While this image may be ahead of the official (deprecated) repo at [blacklabelops/volumerize](https://github.com/blacklabelops/volumerize), we do not offically maintain it.
+We can't provide support on issues but you can always file a pull request and we'll merge and update the docker hub image, if necessary.
+
+This repo is dedicated to keeping the components up to date but there will be no further development beyond the features we are using in-house at Motion Bank.
+
+This repo (and the image at [hub.docker.com](https://hub.docker.com/r/motionbank/volumerize/)) uses:
+
+* Duplicity 0.8.13
+* Jobber 1.4.4
+* Docker CLI 19.03.12
+* MEGAtools 1.10.3
+
+The docker image is built on top of Alpine Linux 3.12
 
 # Volume Backups Tutorials
 
@@ -254,26 +271,38 @@ $ docker exec volumerize backup
 ~~~~
 
 ### Additional Docker CLI API configurations
-> If the docker host version is earlier than 1.12 then include the following docker api setting, Volumerize uses docker CLI ver 1.12 which uses Docker API version 1.24. One needs to set the compatible API version of the docker host 
-ie. Docker host version 1.11 uses API 1.23
+> If the docker host version is earlier than 1.12 then include the following docker api setting, Volumerize uses docker CLI ver 19.03.12 which uses Docker API version 1.40. One needs to set the compatible API version of the docker host 
+ie. Docker host version 19.03 uses API 1.40
 
 ~~~~
 docker version
-Client:
- Version:      1.11.2
- API version:  1.23
- Go version:   go1.8
- Git commit:   5be46ee-synology
- Built:        Fri May 12 16:36:47 2017
- OS/Arch:      linux/amd64
+Client: Docker Engine - Community
+ Version:           19.03.6
+ API version:       1.40
+ Go version:        go1.12.16
+ Git commit:        369ce74a3c
+ Built:             Thu Feb 13 01:27:49 2020
+ OS/Arch:           linux/amd64
+ Experimental:      false
 
-Server:
- Version:      1.11.2
- API version:  1.23
- Go version:   go1.8
- Git commit:   5be46ee-synology
- Built:        Fri May 12 16:36:47 2017
- OS/Arch:      linux/amd64
+Server: Docker Engine - Community
+ Engine:
+  Version:          19.03.6
+  API version:      1.40 (minimum version 1.12)
+  Go version:       go1.12.16
+  Git commit:       369ce74a3c
+  Built:            Thu Feb 13 01:26:21 2020
+  OS/Arch:          linux/amd64
+  Experimental:     false
+ containerd:
+  Version:          1.2.10
+  GitCommit:        b34a5c8af56e510852c35414db4c1f4fa6172339
+ runc:
+  Version:          1.0.0-rc8+dev
+  GitCommit:        3e425f80a8c931f88e6d94a8c831b9d5aa481657
+ docker-init:
+  Version:          0.18.0
+  GitCommit:        fec3683
 ~~~~
 Then use  the following -e argument
 ~~~~
@@ -282,7 +311,7 @@ $ docker run -d \
     -v /var/run/docker.sock:/var/run/docker.sock \
     ...
     ...
-    -e "DOCKER_API_VERSION=1.23" \
+    -e "DOCKER_API_VERSION=1.40" \
     ...
     ...
     motionbank/volumerize

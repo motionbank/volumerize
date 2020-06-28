@@ -28,7 +28,7 @@ RUN apk upgrade --update && \
       libressl \
       duply \
       ca-certificates \
-      python-dev \
+      python2-dev \
       libffi-dev \
       librsync-dev \
       gcc \
@@ -106,7 +106,7 @@ RUN apk upgrade --update && \
       git \
       curl \
       wget \
-      python-dev \
+      python2-dev \
       libffi-dev \
       libressl-dev \
       libressl \

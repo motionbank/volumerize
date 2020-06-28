@@ -36,7 +36,7 @@ if [ -n "${VOLUMERIZE_DELAYED_START}" ]; then
   sleep ${VOLUMERIZE_DELAYED_START}
 fi
 
-if [ -n "${VOLUMERIZE_SOURCE}" ]; then
+if [ -n "${VOLUMERIZE_SOURCE}" ] || [ -n "${VOLUMERIZE_SOURCE1}" ]; then
   source $CUR_DIR/create_jobber.sh
   source $CUR_DIR/create_gdocs_file.sh
 fi

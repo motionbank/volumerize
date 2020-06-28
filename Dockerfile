@@ -49,7 +49,9 @@ RUN apk upgrade --update && \
       fasteners \
       PyDrive \
       chardet \
-      azure-storage \
+      azure-storage-blob \
+      azure-storage-file-share \
+      azure-storage-file-datalake \
       boto \
       lockfile \
       paramiko \

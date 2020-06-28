@@ -23,6 +23,7 @@ function commandJob() {
   local returnCode=0;
   prepareJob "$jobNumber"
   shift;
+  echo "Backing up ${VOLUMERIZE_JOB_SOURCE} to ${VOLUMERIZE_JOB_TARGET}..."
   eval ${DUPLICITY_JOB_COMMAND} full "$@" ${DUPLICITY_JOB_OPTIONS} ${VOLUMERIZE_JOB_INCLUDES} ${VOLUMERIZE_JOB_SOURCE} ${VOLUMERIZE_JOB_TARGET} || returnCode=$? && true ;
   if [ "$returnCode" -gt "$DUPLICITY_RETURN_CODE" ]; then
     DUPLICITY_RETURN_CODE=$returnCode

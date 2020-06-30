@@ -16,6 +16,7 @@ JOB_NAME1=VolumerizeBackupJob
 JOB_COMMAND1=${JOBBER_SCRIPT_DIR}/periodicBackup
 JOB_TIME1=$JOBBER_CRON_SCHEDULE
 JOB_ON_ERROR1=Continue
+JOB_NOTIFY_SUCCESS1=${JOBBER_NOTIFY_SUCCESS1:-false}
 JOB_NOTIFY_ERR1=${JOBBER_NOTIFY_ERR1:-false}
 JOB_NOTIFY_FAIL1=${JOBBER_NOTIFY_FAIL1:-false}
 
@@ -43,6 +44,7 @@ _EOF_
     VAR_JOB_NAME="JOB_NAME$i"
     VAR_JOB_COMMAND="JOB_COMMAND$i"
     VAR_JOB_TIME="JOB_TIME$i"
+    VAR_JOB_NOTIFY_SUCCESS="JOB_NOTIFY_SUCCESS$i"
     VAR_JOB_NOTIFY_ERR="JOB_NOTIFY_ERR$i"
     VAR_JOB_NOTIFY_FAIL="JOB_NOTIFY_FAIL$i"
 
@@ -54,6 +56,7 @@ _EOF_
     it_job_name=${!VAR_JOB_NAME}
     it_job_time=${!VAR_JOB_TIME}
     it_job_command=${!VAR_JOB_COMMAND}
+    it_job_notify_success=${!VAR_JOB_NOTIFY_SUCCESS:-"false"}
     it_job_notify_error=${!VAR_JOB_NOTIFY_ERR:-"false"}
     it_job_notify_failure=${!VAR_JOB_NOTIFY_FAIL:-"false"}
 
@@ -62,6 +65,7 @@ _EOF_
   cmd: ${it_job_command}
   time: '${it_job_time}'
   onError: ${it_job_on_error}
+  notifyOnSuccess: ${it_job_notify_success}
   notifyOnError: ${it_job_notify_error}
   notifyOnFailure: ${it_job_notify_failure}
 
